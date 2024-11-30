@@ -14,16 +14,16 @@ public class AppTest {
 
         Scanner scanner = TestUtil.genScanner(input);
 
+        ByteArrayOutputStream outputStream = TestUtil.setOutToByteArray();
+
         App app = new App(scanner);
         app.run();
 
-        ByteArrayOutputStream outputStream = TestUtil.setOutToByteArray();
-
         scanner.close();
 
-        TestUtil.clearSetOutToByteArray(outputStream);
-
         String output = outputStream.toString();
+
+        TestUtil.clearSetOutToByteArray(outputStream);
 
         return output;
     }

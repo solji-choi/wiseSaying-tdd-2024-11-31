@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 public class WiseSayingRepository {
@@ -23,5 +24,11 @@ public class WiseSayingRepository {
 
     public boolean delete(int getParamId) {
         return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
+    }
+
+    public Optional<WiseSaying> find(int id) {
+        return  wiseSayings.stream()
+                .filter(wiseSaying -> wiseSaying.getId() == id)
+                .findFirst();
     }
 }

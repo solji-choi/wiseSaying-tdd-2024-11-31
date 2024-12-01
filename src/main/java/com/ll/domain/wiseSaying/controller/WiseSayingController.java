@@ -59,9 +59,7 @@ public class WiseSayingController {
         if(id != 0) {
             List<WiseSaying> wiseSayings = wiseSayingService.getWiseSayings();
 
-            Optional<WiseSaying> opWiseSaying = wiseSayings.stream()
-                    .filter(wiseSaying -> wiseSaying.getId() == id)
-                    .findFirst();
+            Optional<WiseSaying> opWiseSaying = wiseSayingService.findWiseSaying(id);
 
             WiseSaying wiseSaying = opWiseSaying.get();
 

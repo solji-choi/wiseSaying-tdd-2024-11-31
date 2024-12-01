@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
     public static String run(String input) {
-        input = input.stripIndent().trim();
+        input = input.stripIndent().trim() + "\n종료";
 
         Scanner scanner = TestUtil.genScanner(input);
 
@@ -50,7 +50,7 @@ public class AppTest {
     @DisplayName("종료 명령어 입력 시 프로그램이 종료된다.")
     public void t3() {
         String output = AppTest.run("""
-                종료
+                
                 """);
 
         assertThat(output)

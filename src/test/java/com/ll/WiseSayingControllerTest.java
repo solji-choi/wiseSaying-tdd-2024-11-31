@@ -3,6 +3,10 @@ package com.ll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WiseSayingControllerTest {
@@ -176,5 +180,20 @@ public class WiseSayingControllerTest {
         assertThat(output)
                 .contains("2 / 홍길동 / 현재와 자신을 사랑하라.")
                 .doesNotContain("2 / 작자미상 / 과거에 집착하지 마라.");
+    }
+
+    @Test
+    @DisplayName("명언 등록 시 명언번호.json 파일이 생성된다.")
+    public void t10() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                """);
+
+        Path path = Paths.get("db/wiseSaying/1.json");
+        File file = path.toFile();
+
+        assertThat(file.exists()).isTrue();
     }
 }

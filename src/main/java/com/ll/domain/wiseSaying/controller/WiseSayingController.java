@@ -22,7 +22,7 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String author = scanner.nextLine();
 
-        wiseSayingService.add(content, author);
+        wiseSayingService.addWiseSayings(content, author);
 
         System.out.println(wiseSayingService.getLastId() + "번 명언이 등록되었습니다.");
     }

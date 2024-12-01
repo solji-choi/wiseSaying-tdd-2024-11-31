@@ -1,23 +1,26 @@
 package com.ll.domain.wiseSaying.service;
 
 import com.ll.domain.wiseSaying.entity.WiseSaying;
-import lombok.Getter;
+import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class WiseSayingService {
-    private final List<WiseSaying> wiseSayings;
-    private int lastId;
+    private final WiseSayingRepository wiseSayingRepository;
 
     public WiseSayingService() {
-        this.wiseSayings = new ArrayList<>();
-        this.lastId = 0;
+        this.wiseSayingRepository = new WiseSayingRepository();
     }
 
-    public void add(String content, String author) {
-        ++lastId;
-        wiseSayings.add(new WiseSaying(lastId, content, author));
+    public void addWiseSayings(String content, String author) {
+        wiseSayingRepository.add(content, author);
+    }
+
+    public int getLastId() {
+        return wiseSayingRepository.getLastId();
+    }
+
+    public List<WiseSaying> getWiseSayings() {
+        return wiseSayingRepository.getWiseSayings();
     }
 }

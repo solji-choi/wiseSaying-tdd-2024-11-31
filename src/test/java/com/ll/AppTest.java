@@ -63,8 +63,8 @@ public class AppTest {
     @DisplayName("없는 명령어가 입력될 경우 계속 명령어를 입력할 수 있도록 한다.")
     public void t4() {
         String output = AppTest.run("""
-                등록
-                등록
+                등slkjdsl록
+                등ddf록
                 """);
 
         String[] outputBits = output.split("명령\\)");

@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class WiseSayingController {
     private final Scanner scanner;
+    private int lastId;
 
     public WiseSayingController(Scanner scanner) {
         this.scanner = scanner;
+        this.lastId = 0;
     }
 
     public void actionAdd() {
@@ -16,6 +18,7 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String author = scanner.nextLine();
 
-        System.out.println("1번 명언이 등록되었습니다.");
+        ++lastId;
+        System.out.println(lastId + "번 명언이 등록되었습니다.");
     }
 }

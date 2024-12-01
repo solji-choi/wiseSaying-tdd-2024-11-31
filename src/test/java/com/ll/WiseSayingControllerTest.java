@@ -154,4 +154,27 @@ public class WiseSayingControllerTest {
                 .contains("명언(기존) : 과거에 집착하지 마라.")
                 .contains("작가(기존) : 작자미상");
     }
+
+    @Test
+    @DisplayName("수정할 명언과 작가를 다시 입력하면 수정된 내용이 반영된다.")
+    public void t9() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=1
+                삭제?id=1
+                수정?id=2
+                현재와 자신을 사랑하라.
+                홍길동
+                목록
+                """);
+
+        assertThat(output)
+                .contains("2 / 홍길동 / 현재와 자신을 사랑하라.")
+                .doesNotContain("2 / 작자미상 / 과거에 집착하지 마라.");
+    }
 }

@@ -24,7 +24,15 @@ public class WiseSayingService {
         return wiseSayingRepository.getWiseSayings();
     }
 
-    public void deleteWiseSaying(int getParamId) {
-        wiseSayingRepository.delete(getParamId);
+    public int getParamId(String cmd) {
+        try {
+            return Integer.parseInt(cmd.substring(6));
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public void deleteWiseSaying(int id) {
+        wiseSayingRepository.delete(id);
     }
 }

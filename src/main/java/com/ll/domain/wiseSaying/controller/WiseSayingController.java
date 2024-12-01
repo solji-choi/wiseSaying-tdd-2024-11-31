@@ -39,10 +39,14 @@ public class WiseSayingController {
     }
 
     public void actionDelete(String cmd) {
-        int getParamId = Integer.parseInt(cmd.substring(6));
+        int id = wiseSayingService.getParamId(cmd);
 
-        wiseSayingService.deleteWiseSaying(getParamId);
+        if(id != 0) {
+            wiseSayingService.deleteWiseSaying(id);
 
-        System.out.println(getParamId + "번 명언이 삭제되었습니다.");
+            System.out.println(id + "번 명언이 삭제되었습니다.");
+        } else {
+            System.out.println("삭제할 id를 입력해주세요(숫자)");
+        }
     }
 }

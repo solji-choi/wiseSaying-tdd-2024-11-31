@@ -94,4 +94,21 @@ public class WiseSayingControllerTest {
                 .contains("2 / 작자미상 / 과거에 집착하지 마라.")
                 .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
     }
+
+    @Test
+    @DisplayName("정상적이지 않은 id값이 들어올 경우 예외 처리")
+    public void t6() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=일
+                """);
+
+        assertThat(output)
+                .contains("삭제할 id를 입력해주세요(숫자)");
+    }
 }

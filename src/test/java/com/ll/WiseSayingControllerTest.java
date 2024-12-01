@@ -86,7 +86,6 @@ public class WiseSayingControllerTest {
                 등록
                 과거에 집착하지 마라.
                 작자미상
-                목록
                 삭제?id=1
                 목록
                 """);

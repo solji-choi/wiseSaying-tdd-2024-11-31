@@ -37,4 +37,14 @@ public class WiseSayingController {
             System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
         }
     }
+
+    public void actionDelete(String cmd) {
+        int getParamId = Integer.parseInt(cmd.substring(6));
+
+        List<WiseSaying> wiseSayings = wiseSayingService.getWiseSayings();
+
+        wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
+
+        System.out.println(getParamId + "번 명언이 삭제되었습니다.");
+    }
 }

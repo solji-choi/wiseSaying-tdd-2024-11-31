@@ -4,6 +4,7 @@ import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.service.WiseSayingService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class WiseSayingController {
@@ -49,6 +50,28 @@ public class WiseSayingController {
             }
         } else {
             System.out.println("삭제할 id를 입력해주세요(숫자)");
+        }
+    }
+
+    public void actionModify(String cmd) {
+        int id = wiseSayingService.getParamId(cmd);
+
+        if(id != 0) {
+            List<WiseSaying> wiseSayings = wiseSayingService.getWiseSayings();
+
+            Optional<WiseSaying> opWiseSaying = wiseSayings.stream()
+                    .filter(wiseSaying -> wiseSaying.getId() == id)
+                    .findFirst();
+
+            WiseSaying wiseSaying = opWiseSaying.get();
+
+            System.out.println("명언(기존) : " + wiseSaying.getContent());
+            String content = scanner.nextLine();
+
+            System.out.println("작가(기존) : " + wiseSaying.getAuthor());
+            String author = scanner.nextLine();
+        } else {
+            System.out.println("수정할 id를 입력해주세요(숫자)");
         }
     }
 }

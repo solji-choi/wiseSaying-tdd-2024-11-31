@@ -75,4 +75,24 @@ public class WiseSayingControllerTest {
                 .contains("2 / 작자미상 / 과거에 집착하지 마라.")
                 .contains("1 / 작자미상 / 현재를 사랑하라.");
     }
+
+    @Test
+    @DisplayName("삭제 기능 추가")
+    public void t5() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                목록
+                삭제?id=1
+                목록
+                """);
+
+        assertThat(output)
+                .contains("2 / 작자미상 / 과거에 집착하지 마라.")
+                .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
+    }
 }

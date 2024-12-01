@@ -35,4 +35,15 @@ public class AppTest {
 
         assertThat(output).contains("== 명언 앱 ==");
     }
+
+    @Test
+    @DisplayName("명령) ")
+    public void t2() {
+        String output = AppTest.run("");
+
+        assertThat(output)
+                .contains("== 명언 앱 ==")
+                .contains("명령) ");
+    }
+
 }

@@ -61,13 +61,20 @@ public class WiseSayingController {
 
             Optional<WiseSaying> opWiseSaying = wiseSayingService.findWiseSaying(id);
 
-            WiseSaying wiseSaying = opWiseSaying.get();
+            if(!opWiseSaying.isEmpty()) {
+                WiseSaying wiseSaying = opWiseSaying.get();
 
-            System.out.println("명언(기존) : " + wiseSaying.getContent());
-            String content = scanner.nextLine();
+                System.out.println("명언(기존) : " + wiseSaying.getContent());
+                String content = scanner.nextLine();
 
-            System.out.println("작가(기존) : " + wiseSaying.getAuthor());
-            String author = scanner.nextLine();
+                System.out.println("작가(기존) : " + wiseSaying.getAuthor());
+                String author = scanner.nextLine();
+
+                wiseSaying.setContent(content);
+                wiseSaying.setAuthor(author);
+            } else {
+                System.out.println(id + "번 명언은 존재하지 않습니다.");
+            }
         } else {
             System.out.println("수정할 id를 입력해주세요(숫자)");
         }

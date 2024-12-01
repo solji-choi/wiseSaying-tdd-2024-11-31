@@ -59,4 +59,17 @@ public class AppTest {
                 .contains("프로그램을 종료합니다.");
     }
 
+    @Test
+    @DisplayName("없는 명령어가 입력될 경우 계속 명령어를 입력할 수 있도록 한다.")
+    public void t4() {
+        String output = AppTest.run("""
+                등록
+                등록
+                """);
+
+        String[] outputBits = output.split("명령\\)");
+
+        assertThat(outputBits).hasSize(4);
+    }
+
 }

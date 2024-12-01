@@ -111,4 +111,23 @@ public class WiseSayingControllerTest {
         assertThat(output)
                 .contains("삭제할 id를 입력해주세요(숫자)");
     }
+
+    @Test
+    @DisplayName("존재하지 않는 명언삭제에 대한 예외처리")
+    public void t7() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=1
+                목록
+                삭제?id=1
+                """);
+
+        assertThat(output)
+                .contains("1번 명언은 존재하지 않습니다.");
+    }
 }

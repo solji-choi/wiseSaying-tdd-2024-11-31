@@ -1,4 +1,4 @@
-package com.ll.domain.wiseSaying.entity.WiseSaying;
+package com.ll.domain.wiseSaying.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

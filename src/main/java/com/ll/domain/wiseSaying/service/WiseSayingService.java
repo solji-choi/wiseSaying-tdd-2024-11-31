@@ -40,4 +40,8 @@ public class WiseSayingService {
     public Optional<WiseSaying> findWiseSaying(int id) {
         return wiseSayingRepository.find(id);
     }
+
+    public void modifyWiseSaying(WiseSaying wiseSaying, String content, String author) {
+        wiseSayingRepository.modify(wiseSaying, content, author);
+    }
 }

@@ -70,8 +70,7 @@ public class WiseSayingController {
                 System.out.println("작가(기존) : " + wiseSaying.getAuthor());
                 String author = scanner.nextLine();
 
-                wiseSaying.setContent(content);
-                wiseSaying.setAuthor(author);
+                wiseSayingService.modifyWiseSaying(wiseSaying, content, author);
             } else {
                 System.out.println(id + "번 명언은 존재하지 않습니다.");
             }

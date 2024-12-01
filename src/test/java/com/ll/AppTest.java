@@ -46,4 +46,17 @@ public class AppTest {
                 .contains("명령) ");
     }
 
+    @Test
+    @DisplayName("종료 명령어 입력 시 프로그램이 종료된다.")
+    public void t3() {
+        String output = AppTest.run("""
+                종료
+                """);
+
+        assertThat(output)
+                .contains("== 명언 앱 ==")
+                .contains("명령) ")
+                .contains("프로그램을 종료합니다.");
+    }
+
 }

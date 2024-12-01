@@ -32,7 +32,7 @@ public class WiseSayingService {
         }
     }
 
-    public void deleteWiseSaying(int id) {
-        wiseSayingRepository.delete(id);
+    public boolean deleteWiseSaying(int id) {
+        return wiseSayingRepository.delete(id);
     }
 }

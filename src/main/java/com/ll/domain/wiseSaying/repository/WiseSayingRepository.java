@@ -21,7 +21,7 @@ public class WiseSayingRepository {
         wiseSayings.add(new WiseSaying(lastId, content, author));
     }
 
-    public void delete(int getParamId) {
-        wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
+    public boolean delete(int getParamId) {
+        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
     }
 }

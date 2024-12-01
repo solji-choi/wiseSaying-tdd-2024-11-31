@@ -42,9 +42,11 @@ public class WiseSayingController {
         int id = wiseSayingService.getParamId(cmd);
 
         if(id != 0) {
-            wiseSayingService.deleteWiseSaying(id);
-
-            System.out.println(id + "번 명언이 삭제되었습니다.");
+            if(wiseSayingService.deleteWiseSaying(id)){
+                System.out.println(id + "번 명언이 삭제되었습니다.");
+            } else {
+                System.out.println(id + "번 명언은 존재하지 않습니다.");
+            }
         } else {
             System.out.println("삭제할 id를 입력해주세요(숫자)");
         }

@@ -23,4 +23,8 @@ public class WiseSayingService {
     public List<WiseSaying> getWiseSayings() {
         return wiseSayingRepository.getWiseSayings();
     }
+
+    public void deleteWiseSaying(int getParamId) {
+        wiseSayingRepository.delete(getParamId);
+    }
 }

@@ -20,4 +20,8 @@ public class WiseSayingRepository {
         ++lastId;
         wiseSayings.add(new WiseSaying(lastId, content, author));
     }
+
+    public void delete(int getParamId) {
+        wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
+    }
 }

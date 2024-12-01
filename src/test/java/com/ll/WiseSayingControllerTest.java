@@ -71,7 +71,7 @@ public class WiseSayingControllerTest {
 
         assertThat(output)
                 .contains("번호 / 작가 / 명언")
-                .contains("---------------------- ")
+                .contains("----------------------")
                 .contains("2 / 작자미상 / 과거에 집착하지 마라.")
                 .contains("1 / 작자미상 / 현재를 사랑하라.");
     }

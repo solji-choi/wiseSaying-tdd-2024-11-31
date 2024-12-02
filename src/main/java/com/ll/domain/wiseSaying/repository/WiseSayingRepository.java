@@ -1,39 +1,16 @@
 package com.ll.domain.wiseSaying.repository;
 
 import com.ll.domain.wiseSaying.entity.WiseSaying;
-import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-@Getter
-public class WiseSayingRepository {
-    private final List<WiseSaying> wiseSayings;
-    private int lastId;
 
-    public WiseSayingRepository() {
-        this.wiseSayings = new ArrayList<>();
-        this.lastId = 0;
-    }
+public interface WiseSayingRepository {
+    public void add(String content, String author);
 
-    public void add(String content, String author) {
-        ++lastId;
-        wiseSayings.add(new WiseSaying(lastId, content, author));
-    }
+    public boolean delete(int getParamId);
 
-    public boolean delete(int getParamId) {
-        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
-    }
+    public Optional<WiseSaying> find(int id);
 
-    public Optional<WiseSaying> find(int id) {
-        return  wiseSayings.stream()
-                .filter(wiseSaying -> wiseSaying.getId() == id)
-                .findFirst();
-    }
-
-    public void modify(WiseSaying wiseSaying, String content, String author) {
-        wiseSaying.setContent(content);
-        wiseSaying.setAuthor(author);
-    }
+    public void modify(WiseSaying wiseSaying, String content, String author);
 }

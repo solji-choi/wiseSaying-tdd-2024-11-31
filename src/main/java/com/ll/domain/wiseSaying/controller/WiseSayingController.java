@@ -3,10 +3,6 @@ package com.ll.domain.wiseSaying.controller;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.service.WiseSayingService;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -30,20 +26,6 @@ public class WiseSayingController {
         wiseSayingService.addWiseSayings(content, author);
 
         System.out.println(wiseSayingService.getLastId() + "번 명언이 등록되었습니다.");
-
-        Path path = Paths.get("db/wiseSaying");
-        File dir = path.toFile();
-        File file = new File(path + "/1.json");
-        try {
-            if(dir.isDirectory()){
-                file.createNewFile();
-            } else {
-                dir.mkdirs();
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void actionList() {

@@ -21,7 +21,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     public void add(String content, String author) {
         ++lastId;
         wiseSayings.add(new WiseSaying(lastId, content, author));
-        Util.Files.createFile(lastId);
+        Util.files.createFile(lastId);
     }
 
     public boolean delete(int getParamId) {

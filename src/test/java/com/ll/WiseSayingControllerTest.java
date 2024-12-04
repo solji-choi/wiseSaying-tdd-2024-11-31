@@ -1,20 +1,22 @@
 package com.ll;
 
+import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.util.Util;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WiseSayingControllerTest {
-    @BeforeAll
-    public static void beforeAll() {
-        Util.Files.dirDelete();
+    @BeforeEach
+    public void beforeEach() {
+        Util.files.dirDelete();
     }
 
     @Test
@@ -202,5 +204,22 @@ public class WiseSayingControllerTest {
         File file = path.toFile();
 
         assertThat(file.exists()).isTrue();
+    }
+
+    @Test
+    @DisplayName("명언 등록 시 생성되는 json 파일에는 명언 클래스의 map이 그대로 들어간다.")
+    public void t11() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                """);
+
+        String jsonStr = Util.files.readFile(1);
+        WiseSaying wiseSaying = new WiseSaying(1, "현재를 사랑하라.", "작자미상");
+        Map<String, Object> map = wiseSaying.mapToWiseSaying();
+        String mapStr = Util.json.jsonTomap(map);
+
+        assertThat(jsonStr).isEqualTo(mapStr);
     }
 }

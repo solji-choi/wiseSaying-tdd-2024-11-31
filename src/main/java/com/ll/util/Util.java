@@ -45,12 +45,18 @@ public class Util {
             }
         }
 
-        public static String readFile(int id) {
+        public static String readFile(Object object) {
             int readData = -1;
             StringBuilder str = new StringBuilder();
 
             try {
-                FileReader reader = new FileReader(Util.files.pathRowFile(id));
+                FileReader reader = null;
+
+                if(object instanceof Integer) {
+                    reader = new FileReader(Util.files.pathRowFile(Integer.parseInt(object.toString())));
+                } else if(object.toString().equals("lastId")) {
+                    reader = new FileReader(Path.of(Util.files.path + "/lastId.txt").toFile());
+                }
 
                 while ((readData = reader.read()) != -1) {
                     str.append((char) readData);

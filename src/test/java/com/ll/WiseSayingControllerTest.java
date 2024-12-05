@@ -222,4 +222,20 @@ public class WiseSayingControllerTest {
 
         assertThat(jsonStr).isEqualTo(mapStr);
     }
+
+    @Test
+    @DisplayName("명언 등록 시 마지막에 생성된 명언번호가 lastId.txt에 저장된다.")
+    public void t12() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                """);
+        Path path = Paths.get("db/wiseSaying/lastId.txt");
+        File file = path.toFile();
+        String lastIdStr = Util.files.readFile("lastId");
+
+        assertThat(file.exists()).isTrue();
+        assertThat(lastIdStr).isEqualTo("1");
+    }
 }

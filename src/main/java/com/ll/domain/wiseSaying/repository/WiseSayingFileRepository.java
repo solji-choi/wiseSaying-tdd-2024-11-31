@@ -23,6 +23,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
         WiseSaying wiseSaying = new WiseSaying(lastId, content, author);
         Util.files.writeFile(lastId, Util.json.jsonTomap(wiseSaying.mapToWiseSaying()));
+        Util.files.writelastId(lastId);
     }
 
     public boolean delete(int getParamId) {

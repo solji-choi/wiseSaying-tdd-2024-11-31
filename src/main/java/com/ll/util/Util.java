@@ -77,6 +77,16 @@ public class Util {
                 throw new RuntimeException(e);
             }
         }
+
+        public static void writelastId (int id) {
+            try(
+                    PrintWriter pw = new PrintWriter(Path.of(Util.files.path + "/lastId.txt").toFile());
+            ) {
+                pw.print(id);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public static class json {

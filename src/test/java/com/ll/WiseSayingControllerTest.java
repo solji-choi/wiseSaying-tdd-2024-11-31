@@ -238,4 +238,26 @@ public class WiseSayingControllerTest {
         assertThat(file.exists()).isTrue();
         assertThat(lastIdStr).isEqualTo("1");
     }
+
+    @Test
+    @DisplayName("명언 수정 시 해당 파일이 갱신되어야 한다.")
+    public void t13() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                수정?id=2
+                현재와 자신을 사랑하라.
+                홍길동
+                """);
+        String jsonStr = Util.files.readFile(2);
+        WiseSaying wiseSaying = new WiseSaying(2, "현재와 자신을 사랑하라.", "홍길동");
+        Map<String, Object> map = wiseSaying.mapToWiseSaying();
+        String mapStr = Util.json.jsonTomap(map);
+
+        assertThat(jsonStr).isEqualTo(mapStr);
+    }
 }

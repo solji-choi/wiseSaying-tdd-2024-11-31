@@ -18,6 +18,12 @@ public class Util {
             return path.toFile();
         }
 
+        public static File pathlastId () {
+            Path path = Path.of(Util.files.path + "/lastId.txt");
+
+            return path.toFile();
+        }
+
         public static void createFile(int id) {
             File file = Util.files.pathRowFile(id);
 
@@ -55,7 +61,7 @@ public class Util {
                 if(object instanceof Integer) {
                     reader = new FileReader(Util.files.pathRowFile(Integer.parseInt(object.toString())));
                 } else if(object.toString().equals("lastId")) {
-                    reader = new FileReader(Path.of(Util.files.path + "/lastId.txt").toFile());
+                    reader = new FileReader(pathlastId());
                 }
 
                 while ((readData = reader.read()) != -1) {
@@ -64,7 +70,6 @@ public class Util {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             return str.toString();
         }
 
@@ -80,7 +85,7 @@ public class Util {
 
         public static void writelastId (int id) {
             try(
-                    PrintWriter pw = new PrintWriter(Path.of(Util.files.path + "/lastId.txt").toFile());
+                    PrintWriter pw = new PrintWriter(pathlastId());
             ) {
                 pw.print(id);
             } catch (IOException e) {

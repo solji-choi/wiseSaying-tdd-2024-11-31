@@ -34,13 +34,15 @@ public class Util {
         }
 
         public static void dirDelete() {
-            File[] files = Util.files.dir.listFiles();
+            if(Util.files.dir.exists()) {
+                File[] files = Util.files.dir.listFiles();
 
-            for( int i=0; i<files.length; i++){
-                files[i].delete();
+                for( int i=0; i<files.length; i++){
+                    files[i].delete();
+                }
+
+                Util.files.dir.delete();
             }
-
-            Util.files.dir.delete();
         }
 
         public static String readFile(int id) {

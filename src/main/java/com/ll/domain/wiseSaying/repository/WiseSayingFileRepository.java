@@ -4,9 +4,7 @@ import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.util.Util;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 public class WiseSayingFileRepository implements WiseSayingRepository {
@@ -22,6 +20,9 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         ++lastId;
         wiseSayings.add(new WiseSaying(lastId, content, author));
         Util.files.createFile(lastId);
+
+        WiseSaying wiseSaying = new WiseSaying(lastId, content, author);
+        Util.files.writeFile(lastId, Util.json.jsonTomap(wiseSaying.mapToWiseSaying()));
     }
 
     public boolean delete(int getParamId) {

@@ -39,5 +39,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     public void modify(WiseSaying wiseSaying, String content, String author) {
         wiseSaying.setContent(content);
         wiseSaying.setAuthor(author);
+
+        Util.files.writeFile(lastId, Util.json.jsonTomap(wiseSaying.mapToWiseSaying()));
     }
 }

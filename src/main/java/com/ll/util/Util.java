@@ -92,6 +92,10 @@ public class Util {
                 throw new RuntimeException(e);
             }
         }
+
+        public static boolean deleteFile (int id) {
+            return Util.files.pathRowFile(id).delete();
+        }
     }
 
     public static class json {

@@ -27,7 +27,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public boolean delete(int getParamId) {
-        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == getParamId);
+        return Util.files.deleteFile(getParamId);
     }
 
     public Optional<WiseSaying> find(int id) {

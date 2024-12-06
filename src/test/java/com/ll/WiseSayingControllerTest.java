@@ -260,4 +260,22 @@ public class WiseSayingControllerTest {
 
         assertThat(jsonStr).isEqualTo(mapStr);
     }
+
+    @Test
+    @DisplayName("명언 삭제 시 해당 파일이 삭제되어야 한다.")
+    public void t14() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=1
+                """);
+        Path path = Paths.get("db/wiseSaying/1.json");
+        File file = path.toFile();
+
+        assertThat(file.exists()).isFalse();
+    }
 }

@@ -218,7 +218,7 @@ public class WiseSayingControllerTest {
         String jsonStr = Util.files.readFile(1);
         WiseSaying wiseSaying = new WiseSaying(1, "현재를 사랑하라.", "작자미상");
         Map<String, Object> map = wiseSaying.mapToWiseSaying();
-        String mapStr = Util.json.jsonTomap(map);
+        String mapStr = Util.json.mapToJson(map);
 
         assertThat(jsonStr).isEqualTo(mapStr);
     }
@@ -256,7 +256,7 @@ public class WiseSayingControllerTest {
         String jsonStr = Util.files.readFile(2);
         WiseSaying wiseSaying = new WiseSaying(2, "현재와 자신을 사랑하라.", "홍길동");
         Map<String, Object> map = wiseSaying.mapToWiseSaying();
-        String mapStr = Util.json.jsonTomap(map);
+        String mapStr = Util.json.mapToJson(map);
 
         assertThat(jsonStr).isEqualTo(mapStr);
     }

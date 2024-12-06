@@ -3,14 +3,14 @@ package com.ll.util;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class Util {
     public static class files {
         private static Path path = Paths.get("db/wiseSaying");
-        private static File dir = path.toFile();
+        public static File dir = path.toFile();
 
         public static File pathRowFile (int id) {
             Path path = Path.of(Util.files.path + "/" + id + ".json");
@@ -99,7 +99,7 @@ public class Util {
     }
 
     public static class json {
-        public static String jsonTomap(Map<String, Object> map) {
+        public static String mapToJson(Map<String, Object> map) {
             StringBuilder jsonStr = new StringBuilder();
             Set<String> keys = map.keySet();
 
@@ -118,11 +118,12 @@ public class Util {
             return jsonStr.toString();
         }
 
-        public static Map<String, Object> mapToJson(String jsonStr) {
-            Map<String, Object> map = new HashMap<>();
-            String[] jsonBits = jsonStr.substring(1, jsonStr.length() - 2).trim().split(", ");
+        public static Map<String, Object> jsonToMap(String jsonStr) {
+            Map<String, Object> map = new LinkedHashMap<>();
+
+            String[] jsonBits = jsonStr.substring(2, jsonStr.length() - 2).trim().split(",\n");
             for(String maps : jsonBits) {
-                String[] mapBits = maps.stripIndent().trim().split(": ");
+                String[] mapBits = maps.stripIndent().trim().replace("\"", "").split(": ");
                 map.put(mapBits[0], mapBits[1]);
             }
 

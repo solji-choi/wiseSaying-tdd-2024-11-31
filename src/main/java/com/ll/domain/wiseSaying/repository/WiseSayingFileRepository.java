@@ -29,13 +29,14 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
         if(Util.files.dir.exists()) {
             File[] files = Util.files.dir.listFiles(jsonFileFilter);
+            String fileName;
 
-            for( int i = 0; i < files.length; i++){
-                if(Util.files.pathRowFile(i + 1).exists()) {
-                    map = Util.json.jsonToMap(Util.files.readFile(i + 1));
+            for(File file : files){
+                fileName  = file.getName().replace(".json", "");
 
-                    wiseSayings.add(new WiseSaying(Integer.parseInt(map.get("id").toString()), map.get("content").toString(), map.get("author").toString()));
-                }
+                map = Util.json.jsonToMap(Util.files.readFile(Integer.parseInt(fileName)));
+
+                wiseSayings.add(new WiseSaying(Integer.parseInt(map.get("id").toString()), map.get("content").toString(), map.get("author").toString()));
             }
         }
 

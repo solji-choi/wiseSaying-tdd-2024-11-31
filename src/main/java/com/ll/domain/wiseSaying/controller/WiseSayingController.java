@@ -57,7 +57,7 @@ public class WiseSayingController {
         int id = wiseSayingService.getParamId(cmd);
 
         if(id != 0) {
-            List<WiseSaying> wiseSayings = wiseSayingService.getWiseSayings();
+            wiseSayingService.getWiseSayings();
 
             Optional<WiseSaying> opWiseSaying = wiseSayingService.findWiseSaying(id);
 

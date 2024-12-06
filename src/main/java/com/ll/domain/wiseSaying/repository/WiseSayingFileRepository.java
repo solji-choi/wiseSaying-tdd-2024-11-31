@@ -18,7 +18,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public void add(String content, String author) {
         ++lastId;
-        wiseSayings.add(new WiseSaying(lastId, content, author));
+        //wiseSayings.add(new WiseSaying(lastId, content, author));
         Util.files.createFile(lastId);
 
         WiseSaying wiseSaying = new WiseSaying(lastId, content, author);

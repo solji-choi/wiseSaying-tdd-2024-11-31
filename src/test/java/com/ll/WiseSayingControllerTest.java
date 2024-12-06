@@ -278,4 +278,26 @@ public class WiseSayingControllerTest {
 
         assertThat(file.exists()).isFalse();
     }
+
+    @Test
+    @DisplayName("목록 조회시 파일에서 조회한다.")
+    public void t15() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                목록
+                """);
+        File file1 = Util.files.pathRowFile(1);
+        File file2 = Util.files.pathRowFile(2);
+
+        assertThat(file1.exists()).isTrue();
+        assertThat(file2.exists()).isTrue();
+        assertThat(output)
+                .contains("2 / 작자미상 / 과거에 집착하지 마라.")
+                .contains("1 / 작자미상 / 현재를 사랑하라.");
+    }
 }
